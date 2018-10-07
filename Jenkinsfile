@@ -10,6 +10,8 @@ pipeline {
         stage('Build') { 
             steps { 
                 load "./paramaters.groovy"
+                
+                
                  echo "Hello" 
                 sh '''#!/bin/bash -l
                 echo "test script"
