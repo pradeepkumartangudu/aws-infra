@@ -11,8 +11,6 @@ pipeline {
             steps { 
                 load "./paramaters.groovy"
                 
-                
-                 echo "Hello" 
                 sh '''#!/bin/bash -l
                 echo "test script"
                 ls ./ -al
