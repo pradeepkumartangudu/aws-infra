@@ -15,7 +15,6 @@ pipeline {
                 ls ./ -al
                 echo $bucketname
                 ./terraform init  -backend-config="access_key=AKIAIUBQGDAIZRDJZOFQ" -backend-config="secret_key=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" -backend-config="key=runtime/$bucketnameterraform.tfstate" .
-                
 '''
             }
         }
