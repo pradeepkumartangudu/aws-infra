@@ -3,7 +3,7 @@ pipeline {
     parameters {
         string(
                 name: 'bucketname',
-                defaultValue:"/home/pencillr/builds/",
+                defaultValue:"",
                 description: "Where to put the build!")
     }
     stages {
