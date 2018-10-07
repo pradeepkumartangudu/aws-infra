@@ -12,6 +12,7 @@ pipeline {
             archiveArtifacts artifacts: 'pradeep.pem'
                 sh 'wget -q https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip'
                 sh 'unzip -qo terraform_0.11.8_linux_amd64.zip'
+                sh './terraform init -var key=runtime/terraform.tfstate -backend-config="key=runtime/terraform.tfstate" ./'
                 sh '''echo "test script"
                 ls ./ -al
                 ./terraform init -var key=runtime/terraform.tfstate -backend-config="key=runtime/terraform.tfstate" ./
