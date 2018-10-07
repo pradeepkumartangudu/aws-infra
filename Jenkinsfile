@@ -9,6 +9,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps { 
+                load "./paramaters.groovy"
                  echo "Hello" 
                 sh 'echo "${params.bucketname}"'
             }
