@@ -14,7 +14,7 @@ pipeline {
                 sh 'unzip -qo terraform_0.11.8_linux_amd64.zip'
                 sh '''echo "test script"
                 ls ./ -al
-                terraform init  -var 'access_key=AKIAIUBQGDAIZRDJZOFQ' -var 'secret_key=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' -backend-config="access_key=AKIAIUBQGDAIZRDJZOFQ" -backend-config="secret_key=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" -backend-config="key=runtime/terraform.tfstate" ./
+                ./terraform init -var key=runtime/terraform.tfstate -backend-config="key=runtime/terraform.tfstate" ./
 #./terraform init  -var 'access_key=AKIAJWOE3M6AXWVJJIRQ' -var 'secret_key=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' -backend-config="access_key=AKIAJWOE3M6AXWVJJIRQ" -backend-config="secret_key=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" ./
 ./terraform -version
 #./terraform init -backend-config="key=runtime/terraform.tfstate" ./
