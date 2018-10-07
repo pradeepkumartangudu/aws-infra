@@ -1,1 +1,1 @@
-bucketname=${params.bucketname}
+env.bucketname="${params.bucketname}"
