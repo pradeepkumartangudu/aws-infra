@@ -9,12 +9,13 @@ pipeline {
     stages {
         stage('Build') { 
             steps { 
-                 script {
+                 sh '''script {
                     build(job: "builder-job",
                         parameters:
-                        [string(name: 'BUCKETNAME', value: "${params.bucketname}")])
+                        [string(name: \'BUCKETNAME\', value: "${params.bucketname}")])
                      echo ${params.bucketname}
-                 }
+                 }'''
+
                 
             }
         }
