@@ -9,14 +9,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps { 
-                 sh '''script {
-                    build(job: "builder-job",
-                        parameters:
-                        [string(name: \'BUCKETNAME\', value: "${params.bucketname}")])
-                     echo ${params.bucketname}
-                 }'''
-
-                
+                 echo "Hello ${params.bucketname}"                
             }
         }
         stage('Test'){
