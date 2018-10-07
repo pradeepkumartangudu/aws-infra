@@ -9,7 +9,8 @@ pipeline {
     stages {
         stage('Build') { 
             steps { 
-                 echo "Hello ${params.bucketname}"                
+                 echo "Hello" 
+                sh 'echo "${params.bucketname}"'
             }
         }
         stage('Test'){
