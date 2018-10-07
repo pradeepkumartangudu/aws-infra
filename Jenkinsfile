@@ -9,6 +9,11 @@ pipeline {
     stages {
         stage('Build') { 
             steps { 
+                 script {
+                    build(job: "builder-job",
+                        parameters:
+                        [string(name: 'BUCKETNAME', value: "${params.bucketname}")])
+                 
             sh 'ls /home/ec2-user/manideep-aws -al'
             sh 'cat /home/ec2-user/main.txt '
             sh 'pwd '
@@ -24,7 +29,7 @@ pipeline {
                 ./terraform init  -backend-config="access_key=AKIAIUBQGDAIZRDJZOFQ" -backend-config="secret_key=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" -backend-config="key=runtime/${params.bucketname}terraform.tfstate" .
                 
 '''
-
+                 }
                 
             }
         }
