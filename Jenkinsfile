@@ -20,6 +20,7 @@ pipeline {
                 ls ./ -al
 		cp ./awf_config.tf ./$tf_path
                 ./terraform init -var bucketname=$bucketname $command -backend-config="key=runtime/$bucketname/terraform.tfstate" $tf_path
+		./terraform plan -var bucketname=$bucketname -var key=runtime/$bucketname/terraform.tfstate $tf_path
                 
 '''
             }
