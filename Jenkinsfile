@@ -19,7 +19,7 @@ pipeline {
 		echo "test script"
                 ls ./ -al
 		cp ./awf_config.tf ./$tf_path
-                ./terraform init  -backend-config="access_key=AKIAIUBQGDAIZRDJZOFQ" -backend-config="secret_key=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" -backend-config="key=runtime/$bucketname/terraform.tfstate" $tf_path
+                ./terraform init  $command -backend-config="key=runtime/$bucketname/terraform.tfstate" $tf_path
                 
 '''
             }
