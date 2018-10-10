@@ -21,7 +21,7 @@ pipeline {
                 ls ./ -al
 		pwd
 		echo $tf_path
-		cp /root/.jenkins/workspace/build_buckets_aws/awf_config.tf  /root/.jenkins/workspace/build_buckets_aws/$tf_path
+		sudo cp /root/.jenkins/workspace/build_buckets_aws/awf_config.tf  /root/.jenkins/workspace/build_buckets_aws/$tf_path
                 ./terraform init -var bucketname=$bucketname -backend-config="access_key=$access_key" -backend-config="secret_key=$secret_key" -backend-config="key=runtime/$bucketname/terraform.tfstate" $tf_path
 		./terraform plan -var bucketname=$bucketname -var access_key=$access_key -var secret_key=$secret_key -var key=runtime/$bucketname/terraform.tfstate $tf_path
                 
