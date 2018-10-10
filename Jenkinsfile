@@ -17,6 +17,7 @@ pipeline {
 				
 				
 		echo "test script"
+		pwd
                 ls ./ -al
 		pwd
 		cp awf_config.tf ./$tf_path
