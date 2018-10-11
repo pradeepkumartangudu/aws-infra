@@ -35,6 +35,8 @@ pipeline {
       steps {
         script {
           try {
+		  sh 'export AWS_ACCESS_KEY_ID=$access_key'
+		  sh 'export AWS_SECRET_ACCESS_KEY=$secret_key'
             sh './terraform apply -var bucketname=$bucketname -var key=runtime/$bucketname/terraform.tfstate ./$tf_path'
 		  input('Do you want to proceed?')
           } finally {
