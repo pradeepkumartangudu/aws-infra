@@ -35,10 +35,9 @@ pipeline {
         try {
             sh './terraform apply -var bucketname=$bucketname -var key=runtime/$bucketname/terraform.tfstate ./$tf_path'
         }
-        catch (exc) {
+        finally {
             echo 'Something failed, I should sound the klaxons!'
-            throw
-        }
+          }
     }
         stage('Deploy') {
             steps {
