@@ -35,8 +35,6 @@ pipeline {
 			 expression {!params.destroy}
 		 }
       steps {
-        script {
-          try {
 		  sh '''#!/bin/bash -l
 				
 		export AWS_ACCESS_KEY_ID=$access_key
@@ -45,10 +43,7 @@ pipeline {
 		./terraform apply current.tfplan
 		
 '''
-	  } finally {
-            echo 'Something failed, I should sound the klaxons!'
-          }
-        }
+	  
       }
     }
         stage('Deploy') {
