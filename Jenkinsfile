@@ -25,7 +25,7 @@ pipeline {
 		export AWS_ACCESS_KEY_ID=$access_key
 		export AWS_SECRET_ACCESS_KEY=$secret_key
                 ./terraform init -var bucketname=$bucketname -backend-config="access_key=$access_key" -backend-config="secret_key=$secret_key" -backend-config="key=runtime/$bucketname/terraform.tfstate" ./$tf_path
-		./terraform plan -var bucketname=$bucketname -var key=runtime/$bucketname/terraform.tfstate -out-put=current.tfplan  ./$tf_path
+		./terraform plan -var bucketname=$bucketname -var key=runtime/$bucketname/terraform.tfstate -out=current.tfplan  ./$tf_path
 		
 '''
             }
