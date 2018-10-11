@@ -39,7 +39,7 @@ pipeline {
           try {
 		  sh 'export AWS_ACCESS_KEY_ID=$access_key'
 		  sh 'export AWS_SECRET_ACCESS_KEY=$secret_key'
-            sh './terraform apply current.tfplan ./$tf_path'
+            sh './terraform apply current.tfplan'
 		  input('Do you want to proceed?')
           } finally {
             echo 'Something failed, I should sound the klaxons!'
