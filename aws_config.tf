@@ -16,9 +16,10 @@ provider "aws" {
 # This can't have interpolations which kinda sucks
 terraform {
   backend "s3" {
-    bucket = "mysoft-test-us-east-1"
+    bucket = "srimanideepsoft-us-east-1"
+#    key    = "runtime/bucket1/terraform.tfstate"
     region = "us-east-1"
 	encrypt = true
-    kms_key_id    = "arn:aws:kms:us-east-1:661856373316:key/807d6be7-fc22-444b-90d4-50ca73588f9a"
+	kms_key_id    = "arn:aws:kms:us-east-1:501458760236:key/73c2301b-d719-4ef4-a65b-9da5422398a6"
   }
 }
