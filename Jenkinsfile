@@ -27,7 +27,8 @@ pipeline {
                 ./terraform init -var bucketname=$bucketname -backend-config="access_key=$access_key" -backend-config="secret_key=$secret_key" -backend-config="key=runtime/$bucketname/terraform.tfstate" ./$tf_path
 		./terraform plan -var bucketname=$bucketname -var key=runtime/$bucketname/terraform.tfstate ./$tf_path
 		
-                
+                set +x
+		./terraform apply -var bucketname=$bucketname -var key=runtime/$bucketname/terraform.tfstate ./$tf_path
 '''
             }
         }
