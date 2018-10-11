@@ -36,6 +36,7 @@ pipeline {
         script {
           try {
             sh './terraform apply -var bucketname=$bucketname -var key=runtime/$bucketname/terraform.tfstate ./$tf_path'
+		  input('Do you want to proceed?')
           } finally {
             echo 'Something failed, I should sound the klaxons!'
           }
