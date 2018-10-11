@@ -31,13 +31,16 @@ pipeline {
 '''
             }
         }
-        stage('Example') {
-        try {
+         stage("Run unit tests"){
+      steps {
+        script {
+          try {
             sh './terraform apply -var bucketname=$bucketname -var key=runtime/$bucketname/terraform.tfstate ./$tf_path'
-        }
-        finally {
+          } finally {
             echo 'Something failed, I should sound the klaxons!'
           }
+        }
+      }
     }
         stage('Deploy') {
             steps {
