@@ -26,15 +26,20 @@ pipeline {
 		export AWS_SECRET_ACCESS_KEY=$secret_key
                 ./terraform init -var bucketname=$bucketname -backend-config="access_key=$access_key" -backend-config="secret_key=$secret_key" -backend-config="key=runtime/$bucketname/terraform.tfstate" ./$tf_path
 		./terraform plan -var bucketname=$bucketname -var key=runtime/$bucketname/terraform.tfstate ./$tf_path
-		./terraform apply -var bucketname=$bucketname -var key=runtime/$bucketname/terraform.tfstate ./$tf_path
+		
                 
 '''
             }
         }
         stage('Test'){
             steps {
-                
-                echo 'Test' 
+                try {
+            sh './terraform apply -var bucketname=$bucketname -var key=runtime/$bucketname/terraform.tfstate ./$tf_path'
+        }
+        catch (exc) {
+            echo 'Something failed, I should sound the klaxons!'
+            throw
+        }
             }
         }
         stage('Deploy') {
