@@ -26,8 +26,6 @@ pipeline {
 		export AWS_SECRET_ACCESS_KEY=$secret_key
                 ./terraform init -var bucketname=$bucketname -backend-config="access_key=$access_key" -backend-config="secret_key=$secret_key" -backend-config="key=runtime/$bucketname/terraform.tfstate" ./$tf_path
 		./terraform plan -var bucketname=$bucketname -var key=runtime/$bucketname/terraform.tfstate -out=current.tfplan  ./$tf_path
-		set +x
-		./terraform apply current.tfplan
 		
 '''
             }
@@ -39,11 +37,15 @@ pipeline {
       steps {
         script {
           try {
-		  sh 'export AWS_ACCESS_KEY_ID=$access_key'
-		  sh 'export AWS_SECRET_ACCESS_KEY=$secret_key'
-            sh ''
-		  input('Do you want to proceed?')
-          } finally {
+		  sh '''#!/bin/bash -l
+				
+		export AWS_ACCESS_KEY_ID=$access_key
+		export AWS_SECRET_ACCESS_KEY=$secret_key
+		set +x
+		./terraform apply current.tfplan
+		
+'''
+	  } finally {
             echo 'Something failed, I should sound the klaxons!'
           }
         }
